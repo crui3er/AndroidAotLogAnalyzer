@@ -5,13 +5,36 @@ namespace AndroidAotLogAnalyzer;
 
 public sealed class ViewModel : INotifyPropertyChanged
 {
-    private AotLogData _data = new(false, [], new AotLogStat(0, 0, 0));
+    private AotLogDataOverview _overview = new (AotLogData.Empty(true), AotLogData.Empty(false), 0);
+    private bool _isAotFoundViewSelected = true;
+    private string _fileName = "";
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public AotLogData Data
+        => IsAotFoundViewSelected ? Overview.Found : Overview.NotFound;
+
+    public AotLogDataOverview Overview
     {
-        get => _data;
-        set => SetField(ref _data, value);
+        get => _overview;
+        set {
+            if (SetField(ref _overview, value))
+                OnPropertyChanged(nameof(Data));
+        }
+    }
+
+    public bool IsAotFoundViewSelected
+    {
+        get => _isAotFoundViewSelected;
+        set {
+            if (SetField(ref _isAotFoundViewSelected, value))
+                OnPropertyChanged(nameof(Data));
+        }
+    }
+
+    public string FileName
+    {
+        get => _fileName;
+        set => SetField(ref _fileName, value);
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

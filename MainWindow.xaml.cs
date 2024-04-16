@@ -22,8 +22,7 @@ public partial class MainWindow : Window
 
     private void OnOpenFileClick(object sender, RoutedEventArgs e)
     {
-        var dialog = new Microsoft.Win32.OpenFileDialog
-        {
+        var dialog = new Microsoft.Win32.OpenFileDialog {
             DefaultExt = ".txt", // Default file extension
             Filter = "Text documents (.txt)|*.txt" // Filter files by extension
         };
@@ -31,12 +30,13 @@ public partial class MainWindow : Window
         // Show open file dialog box
         bool? result = dialog.ShowDialog();
 
-// Process open file dialog box results
+        // Process open file dialog box results
         if (result != true)
             return;
 
         using var stream = dialog.OpenFile();
-        var data = new LogFileReader().Process(stream, !RadioButtonAotNotFound.IsChecked.GetValueOrDefault());
-        this.ViewModel.Data = data;
+        var overview = new LogFileReader().Process(stream);
+        ViewModel.FileName = System.IO.Path.GetFileName(dialog.FileName);
+        ViewModel.Overview = overview;
     }
 }

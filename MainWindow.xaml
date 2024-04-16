@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AndroidAotLogAnalyzer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Android Aot Log Analyzer" Height="600" Width="800">
     <Window.DataContext>
         <local:ViewModel x:Name="ViewModel" />
     </Window.DataContext>
@@ -13,19 +13,49 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnOpenFileClick">Open log file</Button>
-            <RadioButton Margin="20 0 0 0" VerticalAlignment="Center" >AOT FOUND</RadioButton>
-            <RadioButton x:Name="RadioButtonAotNotFound" Margin="20 0 0 0" VerticalAlignment="Center" IsChecked="True" >AOT NOT FOUND</RadioButton>
+            <Button VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Click="OnOpenFileClick">Open log file</Button>
+            <TextBlock
+                Margin="10 0 0 0"
+                VerticalAlignment="Center"
+                Text="{Binding FileName, StringFormat={}File: {0}}" />
+        </StackPanel>
+        <StackPanel Margin="0, 3" Grid.Row="1" Orientation="Horizontal">
+            <TextBlock
+                VerticalAlignment="Center"
+                Text="{Binding Overview.Total, StringFormat={}Total AOT method records: {0}}" />
+            <RadioButton
+                Margin="10 0 0 0"
+                VerticalAlignment="Center"
+                IsChecked="{Binding IsAotFoundViewSelected, Mode=TwoWay}">FOUND</RadioButton>
+            <RadioButton
+                Margin="20 0 0 0"
+                VerticalAlignment="Center" >NOT FOUND</RadioButton>
         </StackPanel>
         
-        <TextBlock Grid.Row="1" Text="{Binding Data.Title}" />
-        <ListBox Grid.Row="2" x:Name="TypesList" ItemsSource="{Binding Data.Types}" DisplayMemberPath="DisplayName"></ListBox>
-        <TextBlock Grid.Row="3">Details:</TextBlock>
-        <ListBox Grid.Row="4" ItemsSource="{Binding ElementName=TypesList, Path=SelectedValue.Methods}"></ListBox>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding Data.Title}" />
+            <ListBox Grid.Row="1" x:Name="TypesList" ItemsSource="{Binding Data.Types}" DisplayMemberPath="DisplayName"></ListBox>
+        </Grid>
+        
+        <GridSplitter Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="4"/>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">Details:</TextBlock>
+            <ListBox Grid.Row="1" ItemsSource="{Binding ElementName=TypesList, Path=SelectedValue.Methods}"></ListBox>
+        </Grid>
     </Grid>
 </Window>
