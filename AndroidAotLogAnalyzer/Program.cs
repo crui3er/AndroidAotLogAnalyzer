@@ -79,7 +79,7 @@ namespace AndroidAotLogAnalyzer
             //streamWriter.Indent++;
             foreach (var type in aotLogData.Types.OrderBy(c => c.Name))
             {
-                await streamWriter.WriteLineAsync(type.DisplayName).ConfigureAwait(false);;
+                await streamWriter.WriteLineAsync(type.Name).ConfigureAwait(false);;
                 streamWriter.Indent++;
                 foreach (var method in type.Methods)
                     await streamWriter.WriteLineAsync(method).ConfigureAwait(false);

@@ -63,6 +63,11 @@ public class LogFileReader
                 return;
             var typeName = parts[0];
             var methodName = parts[1];
+            if (AotFound) {
+                var index = methodName.LastIndexOf('[');
+                if (index > 0)
+                    methodName = methodName.Substring(0, index).TrimEnd();
+            }
             if (Remap(typeName, methodName, out var newTypeName, out var newMethodName)) {
                 typeName = newTypeName;
                 methodName = newMethodName;
