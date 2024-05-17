@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidAotLogAnalyzer", "AndroidAotLogAnalyzer.csproj", "{97DECFA7-A237-45D4-A67D-FD24CA164519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidAotLogAnalyzer", "AndroidAotLogAnalyzer\AndroidAotLogAnalyzer.csproj", "{5CB25F87-D16D-437F-B95F-896D9DD3E24C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidAotLogAnalyzer.UI", "AndroidAotLogAnalyzer.UI\AndroidAotLogAnalyzer.UI.csproj", "{957CCDB7-4BEB-4584-B16A-0529C7BF9D0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{85C47F9E-407A-46B5-81D8-1FFD3072D8CB}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +15,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{97DECFA7-A237-45D4-A67D-FD24CA164519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97DECFA7-A237-45D4-A67D-FD24CA164519}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97DECFA7-A237-45D4-A67D-FD24CA164519}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97DECFA7-A237-45D4-A67D-FD24CA164519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB25F87-D16D-437F-B95F-896D9DD3E24C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB25F87-D16D-437F-B95F-896D9DD3E24C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB25F87-D16D-437F-B95F-896D9DD3E24C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB25F87-D16D-437F-B95F-896D9DD3E24C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957CCDB7-4BEB-4584-B16A-0529C7BF9D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{957CCDB7-4BEB-4584-B16A-0529C7BF9D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{957CCDB7-4BEB-4584-B16A-0529C7BF9D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{957CCDB7-4BEB-4584-B16A-0529C7BF9D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -9,7 +9,7 @@ public record AotLogData(bool AotFound, AotLogType[] Types, AotLogStat Stat)
     public bool AotNotFound => !AotFound;
     public string Title => (AotFound ? "AOT FOUND:" : "AOT NOT FOUND:")
                            + " " + Types.Length + " types,"
-                           + $" methods {Stat.Count}/{Stat.Total}";
+                           + $" methods {Stat.Count} (+ {Stat.Wrappers} wrappers)";
 }
 
 public record AotLogStat(int Total, int Count, int Wrappers);

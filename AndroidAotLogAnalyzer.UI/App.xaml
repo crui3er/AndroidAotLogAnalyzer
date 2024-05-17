@@ -1,7 +1,7 @@
-﻿<Application x:Class="AndroidAotLogAnalyzer.App"
+﻿<Application x:Class="AndroidAotLogAnalyzer.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AndroidAotLogAnalyzer"
+             xmlns:local="clr-namespace:AndroidAotLogAnalyzer.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

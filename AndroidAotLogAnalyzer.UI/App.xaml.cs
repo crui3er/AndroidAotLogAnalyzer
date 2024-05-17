@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace AndroidAotLogAnalyzer;
+namespace AndroidAotLogAnalyzer.UI;
 
 /// <summary>
 /// Interaction logic for App.xaml

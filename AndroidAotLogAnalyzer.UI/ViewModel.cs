@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AndroidAotLogAnalyzer;
+namespace AndroidAotLogAnalyzer.UI;
 
 public sealed class ViewModel : INotifyPropertyChanged
 {

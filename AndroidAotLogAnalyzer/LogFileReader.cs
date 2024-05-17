@@ -11,7 +11,7 @@ public class LogFileReader
         const string foundMarker = "Mono    : AOT: FOUND method ";
 
         var foundTracker = new AotLogTracker(true);
-        var notFoundTracker = new AotLogTracker(true);
+        var notFoundTracker = new AotLogTracker(false);
         var total = 0;
 
         using var reader = new StreamReader(stream, Encoding.UTF8);
@@ -97,20 +97,20 @@ public class LogFileReader
                 var c = typeName[index];
                 if (c == '/') {
                     newTypeName = typeName.Substring(0, index);
-                    newMethodName = typeName.Substring(index) + " " + methodName;
+                    newMethodName = typeName.Substring(index) + ":" + methodName;
                     return true;
                 }
             }
 
             if (StartsWith(typeName, "System.Collections.Concurrent.ConcurrentDictionary`2/Tables", out var rest1)) {
                 newTypeName = "System.Collections.Concurrent.ConcurrentDictionary`2" + rest1;
-                newMethodName = "/Tables " + methodName;
+                newMethodName = "/Tables:" + methodName;
                 return true;
             }
         
             if (StartsWith(typeName, "System.Collections.Concurrent.ConcurrentDictionary`2/Node", out var rest2)) {
                 newTypeName = "System.Collections.Concurrent.ConcurrentDictionary`2" + rest2;
-                newMethodName = "/Node " + methodName;
+                newMethodName = "/Node:" + methodName;
                 return true;
             }
         
