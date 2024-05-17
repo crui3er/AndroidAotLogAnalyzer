@@ -1,7 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 using CommandLine;
 using CommandLine.Text;
-using Microsoft.Extensions.Logging;
 
 namespace AndroidAotLogAnalyzer
 {
@@ -13,36 +12,30 @@ namespace AndroidAotLogAnalyzer
             parserResult
                 .WithParsed(options =>
                 {
-                    var loggerFactory = LoggerFactory.Create(builder =>
-                    {
-                        builder
-                            .ClearProviders()
-                            .AddConsole();
-                    });
-
-                    var logger = loggerFactory.CreateLogger<Program>();
-
                     var inputFilePath = options.InputFilePath;
-                    logger.LogInformation("Input file: {InputFilePath}", inputFilePath);
+                    Console.WriteLine($"Input file: {inputFilePath}");
                     if (!File.Exists(inputFilePath))
                     {
-                        logger.LogError("Input file does not exist");
+                        Console.Error.WriteLine("Input file does not exist");
                         Environment.Exit(1);
                         return;
                     }
 
                     var outputFilePath = options.OutputFilePath;
                     if (!string.IsNullOrWhiteSpace(outputFilePath))
-                        logger.LogInformation("Output file: {OutputFilePath}", outputFilePath);
+                        Console.WriteLine($"Output file: {outputFilePath}");
                     else
                     {
                         outputFilePath = inputFilePath + ".aot-stat.txt";
-                        logger.LogInformation("Output file (auto selected): {OutputFilePath}", outputFilePath);
+                        Console.WriteLine($"Output file (auto selected): {outputFilePath}");
                     }
 
                     if (File.Exists(outputFilePath))
                     {
-                        logger.LogWarning("Output file exists and will be overriden");
+                        var color = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Output file exists and will be overriden");
+                        Console.ForegroundColor = color;
                         File.Delete(outputFilePath);
                     }
 
@@ -54,7 +47,7 @@ namespace AndroidAotLogAnalyzer
                     using (var streamWriter2 = new IndentedTextWriter(streamWriter))
                         WriteResult(streamWriter2, overview).Wait();
                     
-                    logger.LogInformation("Done");
+                    Console.WriteLine("Done");
                 })
                 .WithNotParsed(errors =>
                 {
